@@ -142,7 +142,3 @@ Encadrant: Khemais Abdallah
 Etudiant: Binta Ball DS4
 Etudiant: Aya Zantour DS4
 ```
-
----
-
-Souhaite-tu que je te crée un vrai fichier `requirements.txt` adapté à ce projet aussi ?
