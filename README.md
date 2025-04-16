@@ -16,6 +16,7 @@ plants_prediction/
 ├── app.py                  # Interface Streamlit pour l'utilisateur
 ├── requirements.txt        # Liste des dépendances Python
 ```
+---
 ## Data Understanding
 
 - **Dataset utilisé** : [PlantVillage (Kaggle)](https://www.kaggle.com/datasets/emmarex/plantdisease)
