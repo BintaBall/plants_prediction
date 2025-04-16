@@ -2,7 +2,7 @@
 # Plants Disease Prediction
 
 Ce projet a pour but de détecter automatiquement des maladies de plantes à partir d’images de feuilles.
-Il combine deux modèles de Machine Learning (Random Forest et SVM), une API Flask pour faire les prédictions, et une interface utilisateur avec Streamlit.
+Il combine quatre modèles de Machine Learning (Random Forest ,SVM, Decision Tree, KNN), une API Flask pour faire les prédictions, et une interface utilisateur avec Streamlit.
 
 ---
 
@@ -16,10 +16,7 @@ plants_prediction/
 ├── app.py                  # Interface Streamlit pour l'utilisateur
 ├── requirements.txt        # Liste des dépendances Python
 ```
-
----
-
-## Description technique
+## Data Understanding
 
 - **Dataset utilisé** : [PlantVillage (Kaggle)](https://www.kaggle.com/datasets/emmarex/plantdisease)
 - **Nombre de classes** : 16 maladies ou états de santé différents de plantes
@@ -27,12 +24,14 @@ plants_prediction/
 - **Modèles utilisés** :
   - Random Forest Classifier
   - Support Vector Machine (SVM, kernel RBF)
+  - Decision Tree
+  - KNN (K-Nearest Neighbors )
 - **Interface** : Streamlit (upload d’image, choix du modèle, affichage des prédictions)
 - **API** : Flask REST API locale, réception d’image et réponse en JSON
 
 ---
 
-## Installation
+####Préparation de l'environnement
 
 ### 1. Créer un environnement virtuel (optionnel mais recommandé)
 
