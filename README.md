@@ -1,7 +1,8 @@
 ```markdown
 # Plants Disease Prediction
 
-Ce projet a pour but de détecter automatiquement des maladies de plantes à partir d’images de feuilles. Il combine deux modèles de Machine Learning (Random Forest et SVM), une API Flask pour faire les prédictions, et une interface utilisateur avec Streamlit.
+Ce projet a pour but de détecter automatiquement des maladies de plantes à partir d’images de feuilles.
+Il combine deux modèles de Machine Learning (Random Forest et SVM), une API Flask pour faire les prédictions, et une interface utilisateur avec Streamlit.
 
 ---
 
