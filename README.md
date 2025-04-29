@@ -1,145 +1,93 @@
-```markdown
-# Plants Disease Prediction
 
-Ce projet a pour but de détecter automatiquement des maladies de plantes à partir d’images de feuilles.
-Il combine quatre modèles de Machine Learning (Random Forest ,SVM, Decision Tree, KNN), une API Flask pour faire les prédictions, et une interface utilisateur avec Streamlit.
+
+# 📈 Détection de Maladies des Plantes avec ML + API + Streamlit — *Approche CRISP-DM*
 
 ---
 
-## Structure du projet
+## 1. Business Understanding
+- **Objectif**: Créer une application accessible capable de détecter automatiquement les maladies de plantes à partir d’images de feuilles.
+- **Motivation**: Améliorer la détection rapide des maladies pour soutenir les agriculteurs, en particulier dans les environnements à faibles ressources.
+- **Livrables**: API Flask + Interface utilisateur Streamlit avec prédiction de maladies et recommandations agricoles.
 
-```
-plants_prediction/
-├── PlantVillage/           # Dossier contenant les images classées par maladie
-├── train_models.py         # Script d'entraînement des modèles ML
-├── api.py                  # API Flask pour la prédiction
-├── app.py                  # Interface Streamlit pour l'utilisateur
-├── requirements.txt        # Liste des dépendances Python
-```
 ---
-## Data Understanding
 
-- **Dataset utilisé** : [PlantVillage (Kaggle)](https://www.kaggle.com/datasets/emmarex/plantdisease)
-- **Nombre de classes** : 16 maladies ou états de santé différents de plantes
-- **Prétraitement** : Redimensionnement des images à 64x64 pixels, conversion en niveaux de gris
-- **Modèles utilisés** :
-  - Random Forest Classifier
-  - Support Vector Machine (SVM, kernel RBF)
+## 2. Data Understanding
+- **Source**: [Dataset PlantVillage](https://www.kaggle.com/datasets/emmarex/plantdisease).
+- **Contenu**:
+  - Plus de 50,000 images de feuilles de plantes, classifiées en 15 classes (maladies et feuilles saines).
+  - Exemple de classes : *Tomato_Bacterial_spot*, *Potato_Early_blight*, *Tomato_healthy*, etc.
+- **Observation**: Présence de déséquilibre de classes (certains types de maladies sont surreprésentés).
+
+---
+
+## 3. Data Preparation
+- **Étapes**:
+  - Redimensionnement des images.
+  - Conversion en niveaux de gris.
+  - Normalisation des pixels.
+  - Suppression des doublons (via perceptual hashing).
+- **Structure**:
+  ```
+  ├── models/ (modèles sauvegardés)
+  ├── train_models/ (prétraitement, entraînement)
+  ├── results/ (matrices de confusion, courbes d'évaluation)
+  ```
+
+---
+
+## 4. Modeling
+- **Modèles utilisés**:
+  - Random Forest
+  - Support Vector Machine (SVM RBF kernel)
   - Decision Tree
-  - KNN (K-Nearest Neighbors )
-- **Interface** : Streamlit (upload d’image, choix du modèle, affichage des prédictions)
-- **API** : Flask REST API locale, réception d’image et réponse en JSON
+  - K-Nearest Neighbors (KNN)
+- **Techniques**:
+  - Split du dataset: 80% entraînement / 20% test.
+  - Outils: Scikit-learn, NumPy.
+- **Sauvegarde**: Modèles exportés sous format `.pkl`.
 
 ---
 
-####Préparation de l'environnement
-
-### 1. Créer un environnement virtuel (optionnel mais recommandé)
-
-```bash
-python -m venv venv
-# Linux / macOS :
-source venv/bin/activate
-# Windows :
-venv\Scripts\activate
-```
-
-### 2. Installer les dépendances
-
-Avec `requirements.txt` :
-
-```bash
-pip install -r requirements.txt
-```
-
-Sinon :
-
-```bash
-pip install numpy pandas pillow scikit-learn joblib flask streamlit requests
-```
+## 5. Evaluation
+- **Indicateurs utilisés**:
+  - Accuracy
+  - F1-Score
+  - Matrices de confusion
+- **Résultats**:
+  - Visualisation via `accuracy_plot.png` et `f1_scores_plot.png`.
+  - Analyse détaillée des erreurs par modèle.
+- **Observations**:
+  - Random Forest et SVM ont montré de meilleures performances que KNN et Decision Tree.
 
 ---
 
-## Entraînement des modèles
-
-Avant de prédire, il faut entraîner les modèles sur les données PlantVillage :
-
-```bash
-python train_models.py
-```
-
-Ce script sauvegarde deux fichiers :
-- `random_forest.pkl`
-- `svm_rbf.pkl`
-
-Ces fichiers sont chargés automatiquement par l’API.
-
----
-
-## Lancer l’API Flask
-
-Dans un terminal :
-
-```bash
-python api.py
-```
-
-Cela démarre un serveur local accessible à l'adresse :  
-`http://127.0.0.1:5000/predict`
+## 6. Deployment
+- **API**: 
+  - Développement d'une API REST avec Flask (`api.py`).
+- **Interface Utilisateur**:
+  - Déploiement local avec Streamlit (`app_streamlit.py`).
+- **Utilisation**:
+  1. Choix du modèle.
+  2. Upload d'une image.
+  3. Affichage du résultat et d'une **recommandation agricole** adaptée.
+- **Exemples de recommandations**:
+  - *Tomato__Tomato_mosaic_virus* → "Enlever immédiatement la plante affectée."
+  - *Potato___Early_blight* → "Appliquer un fongicide."
 
 ---
 
-## Lancer l'application Streamlit
-
-Dans un autre terminal :
-
-```bash
-streamlit run app.py
-```
-
-L'application web s'ouvre dans le navigateur.  
-Elle permet :
-- de télécharger une image de feuille
-- de choisir le modèle de prédiction
-- d’obtenir le résultat instantanément
+## 7. Future Work
+- Ajouter la segmentation d'images pour localiser les maladies.
+- Déployer l'API sur le cloud (Render, HuggingFace Spaces...).
+- Étendre la couverture à d’autres cultures comme le maïs ou le blé.
+- Fusionner le projet avec des capteurs en serre (IoT + Computer Vision).
 
 ---
 
-## Exemple d’appel API (optionnel)
+## 8. Auteurs
+- **Contexte**: Projet académique 4ᵉ année, Génie Informatique — Data Science & IA, 2025.
+- **Participants**:
+  - **Eya Zantour**
+  - **Binta Ball**
+- **Encadrant**: Khemais Abdallah
 
-- **Méthode** : POST  
-- **URL** : `http://127.0.0.1:5000/predict`  
-- **Données** : `multipart/form-data`
-  - `file` : image (jpg/png)
-  - `model` : `"Random Forest"` ou `"SVM RBF"`
-
-**Réponse JSON** :
-
-```json
-{
-  "prediction": 5
-}
-```
-
-(La prédiction est l'index de la classe prédite.)
-
----
-
-## Fonctionnalités futures
-
-- Remplacement par des modèles Deep Learning (CNN)
-- Affichage des noms de classes dans l’API
-- Déploiement cloud (Render, Hugging Face, Heroku, etc.)
-- Ajout de métriques de performance dans l’interface
-
----
-
-## Auteurs & Contexte
-
-Projet académique – 4ᵉ année en Génie Informatique, spécialisation Data Science & IA  
-Année : 2025  
-Encadré dans le cadre du module Machine Learning
-Encadrant: Khemais Abdallah
-Etudiant: Binta Ball DS4
-Etudiant: Aya Zantour DS4
-```
