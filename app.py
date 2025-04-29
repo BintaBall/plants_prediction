@@ -5,7 +5,7 @@ import numpy as np
 import io
 
 # Titre de l'application
-st.title("🌿 Prédiction de Maladies des Plantes")
+st.title("Prédiction de Maladies des Plantes")
 
 # URL de l'API Flask
 API_URL = "http://127.0.0.1:5000/predict"
@@ -13,7 +13,7 @@ API_URL = "http://127.0.0.1:5000/predict"
 # Sélection du modèle
 model_name = st.selectbox(
     "Sélectionnez un modèle",
-    ["Random Forest", "SVM RBF"]
+    ["Random Forest", "SVM RBF", "Decision Tree", "KNN"]
 )
 
 # Téléchargement de l'image
@@ -40,8 +40,10 @@ if st.button("Prédire"):
             result = response.json()
             prediction_class = result.get("prediction_class", "Inconnue")
             prediction_index = result.get("prediction_index", -1)
+            recommendation = result.get("recommendation", "Aucune recommandation disponible.")
 
-            st.success(f"🌱 **Résultat :** {prediction_class} (Index : {prediction_index})")
+            st.success(f"Résultat : {prediction_class} (Index : {prediction_index})")
+            st.info(f"**Recommandation :** {recommendation}")
         else:
             st.error(f"Erreur de l'API : {response.text}")
     else:
