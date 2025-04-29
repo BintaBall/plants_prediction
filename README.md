@@ -22,14 +22,12 @@
 
 ```mermaid
 graph TD
-    A[Data Preparation] --> B1[Resize 64x64]
-    A --> B2[Grayscale Conversion]
-    A --> B3[Normalization]
-    A --> B4[Duplicate Removal (Hashing)]
-    B1 --> B
-    B2 --> B
-    B3 --> B
-    B4 --> B
+    A[Start: Raw Images] --> B[Resize to 64x64]
+    B --> C[Convert to Grayscale]
+    C --> D[Normalize Pixel Values]
+    D --> E[Remove Duplicates (Perceptual Hashing)]
+    E --> F[Cleaned Dataset Ready for Training]
+
 ```
 
 - Redimensionnement des images (64x64)
@@ -47,9 +45,8 @@ flowchart TD
     B --> C1[Random Forest]
     B --> C2[SVM (RBF Kernel)]
     B --> C3[Decision Tree]
-    B --> C4[KNN]
-
-    C1 --> D[Evaluation]
+    B --> C4[K-Nearest Neighbors (KNN)]
+    C1 --> D[Model Evaluation]
     C2 --> D
     C3 --> D
     C4 --> D
