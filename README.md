@@ -1,6 +1,6 @@
 
 
-# 📈 Détection de Maladies des Plantes avec ML + API + Streamlit — *Approche CRISP-DM*
+#  Détection de Maladies des Plantes avec ML + API + Streamlit — *Approche CRISP-DM*
 
 ---
 
