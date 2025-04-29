@@ -10,7 +10,7 @@ import joblib
 #  Dossier contenant les sous-dossiers (classes)
 data_dir = 'C:/Users/hp/Dropbox/PC/Desktop/plants_prediction/PlantVillage'
 
-# 🔍 Récupération automatique de toutes les classes (sous-dossiers)
+# Récupération automatique de toutes les classes (sous-dossiers)
 categories = sorted([
     d for d in os.listdir(data_dir)
     if os.path.isdir(os.path.join(data_dir, d))
@@ -68,4 +68,4 @@ for clf, name in zip(classifiers, model_names):
     print(f'{name} Accuracy: {acc:.2f}')
     joblib.dump(clf, f'{name}.pkl')
 
-print("\n✅ Tous les modèles ont été entraînés et sauvegardés avec succès.")
+print("\n Tous les modèles ont été entraînés et sauvegardés avec succès.")
