@@ -42,13 +42,14 @@ graph TD
 flowchart TD
     A[Training Data] --> B[Model Selection]
     B --> C1[Random Forest]
-    B --> C2[SVM (RBF Kernel)]
+    B --> C2["SVM (RBF Kernel)"]
     B --> C3[Decision Tree]
     B --> C4[KNN]
     C1 --> D[Evaluation]
     C2 --> D
     C3 --> D
     C4 --> D
+
 
 ```
 
